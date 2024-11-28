@@ -2,28 +2,27 @@
 - name: deploy the tomcat
   hosts: all
   become: yes
-
   tasks:
     - name: installing the java 11
       ansible.builtin.apt:
-        name: "{{ vars.yaml.java_version }}"
+        name: "{{ java_version }}"
         update_cache: yes
         state: present
     - name: adding the group
       ansible.builtin.group:
-        name: "{{  vars.yaml.usergroup }}"
+        name: "{{ usergroup }}"
         state: present
     - name: adding the user 
       ansible.builtin.user:
-        name: "{{  vars.yaml.username }}"
+        name: "{{ username }}"
         create_home: true
-        group: "{{  vars.yaml.usergroup }}"
+        group: "{{ usergroup }}"
         home: /opt/tomcat
         shell: /bin/false
         state: present  
     - name: downloading the tomcat
       ansible.builtin.get_url:
-        url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{  vars.yaml.tomcat_version }}/bin/apache-tomcat-{{  vars.yaml.tomcat_version }}-fulldocs.tar.gz
-        dest: /tmp/apache-tomcat-{{  vars.yaml.tomcat_version }}-fulldocs.tar.gz
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}-fulldocs.tar.gz
+        dest: /tmp/apache-tomcat-{{ tomcat_version }}-fulldocs.tar.gz
     
         
