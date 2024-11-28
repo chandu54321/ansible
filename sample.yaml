@@ -10,18 +10,18 @@
   tasks:
     - name: installing the java 11
       ansible.builtin.apt:
-        name: {{ java_version }}
+        name: "{{ java_version }}"
         update_cache: yes
         state: present
     - name: adding the group
       ansible.builtin.group:
-        name: {{ usergroup }}
+        name: "{{ usergroup }}"
         state: present
     - name: adding the user 
       ansible.builtin.user:
-        name: {{ username }}
+        name: "{{ username }}"
         create_home: true
-        group: {{ usergroup }}
+        group: "{{ usergroup }}"
         home: /opt/tomcat
         shell: /bin/false
         state: present  
