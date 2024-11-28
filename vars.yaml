@@ -1,0 +1,5 @@
+vars:
+  usergroup : tomcat
+  username: tomcat
+  java_version : openjdk-11-jdk
+  tomcat_version : 9.0.97
