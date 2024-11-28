@@ -2,27 +2,32 @@
 - name: deploy the tomcat
   hosts: all
   become: yes
+  vars:
+    usergroup : tomcat
+    username: tomcat
+    java_version : openjdk-11-jdk
+    tomcat_version : 9.0.97
   tasks:
     - name: installing the java 11
       ansible.builtin.apt:
-        name: openjdk-11-jdk
+        name: {{ java_version }}
         update_cache: yes
         state: present
     - name: adding the group
       ansible.builtin.group:
-        name: tomcat
+        name: {{ usergroup }}
         state: present
     - name: adding the user 
       ansible.builtin.user:
-        name: tomcat
+        name: {{ username }}
         create_home: true
-        group: tomcat
+        group: {{ usergroup }}
         home: /opt/tomcat
         shell: /bin/false
         state: present  
     - name: downloading the tomcat
       ansible.builtin.get_url:
-        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97-fulldocs.tar.gz
-        dest: /tmp/apache-tomcat-9.0.97-fulldocs.tar.gz
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}-fulldocs.tar.gz
+        dest: /tmp/apache-tomcat-{{ tomcat_version }}-fulldocs.tar.gz
     
         
