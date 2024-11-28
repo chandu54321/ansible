@@ -22,10 +22,11 @@
         state: present  
     - name: downloading the tomcat
       ansible.builtin.get_url:
-        url: "https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97-fulldocs.tar.gz"
-        dest: "/tmp/apache-tomcat-9.0.97-fulldocs.tar.gz"
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.97/bin/apache-tomcat-9.0.97-fulldocs.tar.gz
+        dest: /tmp/apache-tomcat-9.0.97-fulldocs.tar.gz
     - name: untaring the Download file
       ansible.builtin.unarchive:
-        src: "/tmp/apache-tomcat-9.0.97-fulldocs.tar.gz"
+        src: /tmp/apache-tomcat-9.0.97-fulldocs.tar.gz
+        dest: /opt/tomcat
         remote_src: yes
         
