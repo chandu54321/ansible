@@ -6,24 +6,24 @@
   tasks:
     - name: installing the java 11
       ansible.builtin.apt:
-        name: "{{ vars.java_version }}"
+        name: "{{ vars.yaml.java_version }}"
         update_cache: yes
         state: present
     - name: adding the group
       ansible.builtin.group:
-        name: "{{ vars.usergroup }}"
+        name: "{{  vars.yaml.usergroup }}"
         state: present
     - name: adding the user 
       ansible.builtin.user:
-        name: "{{ vars.username }}"
+        name: "{{  vars.yaml.username }}"
         create_home: true
-        group: "{{ vars.usergroup }}"
+        group: "{{  vars.yaml.usergroup }}"
         home: /opt/tomcat
         shell: /bin/false
         state: present  
     - name: downloading the tomcat
       ansible.builtin.get_url:
-        url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{ vars.tomcat_version }}/bin/apache-tomcat-{{ vars.tomcat_version }}-fulldocs.tar.gz
-        dest: /tmp/apache-tomcat-{{ tomcat_version }}-fulldocs.tar.gz
+        url: https://dlcdn.apache.org/tomcat/tomcat-9/v{{  vars.yaml.tomcat_version }}/bin/apache-tomcat-{{  vars.yaml.tomcat_version }}-fulldocs.tar.gz
+        dest: /tmp/apache-tomcat-{{  vars.yaml.tomcat_version }}-fulldocs.tar.gz
     
         
