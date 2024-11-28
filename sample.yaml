@@ -28,5 +28,5 @@
       ansible.builtin.unarchive:
         src: /tmp/apache-tomcat-9.0.97-fulldocs.tar.gz
         dest: /opt/tomcat
-        remote_src: yes
+       
         
