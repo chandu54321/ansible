@@ -1,6 +1,6 @@
 ---
 - name: deploy the tomcat
-  hosts: all
+  hosts: ubuntu
   become: yes
   tasks:
     - name: installing the java 11
